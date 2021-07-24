@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core';
 import { MortgageAmount } from './MortgageAmount';
-import { MortgagePercentage } from './MortgagePercentage';
+import MortgagePercentage from './MortgagePercentage';
 
 export function MortgageDetails() {
   return (
