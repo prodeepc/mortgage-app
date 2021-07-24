@@ -16,7 +16,7 @@ export function MortgageAmount() {
   const style = useStyle();
   return (
     <>
-      <Typography variant="body1">
+      <div>
         <div>
           <span className={style.amount}>Rs. 10,663</span>
           <span>/mo</span>
@@ -26,7 +26,7 @@ export function MortgageAmount() {
             <Typography variant="button">See Details &gt;</Typography>
           </Button>
         </div>
-      </Typography>
+      </div>
     </>
   );
 }

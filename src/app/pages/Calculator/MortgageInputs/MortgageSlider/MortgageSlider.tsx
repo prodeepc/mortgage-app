@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 import { PrettySlider, PrettySliderLabels } from './slider.style';
 import { MortgageSliderProps } from './slider.props';
 
@@ -18,6 +18,12 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
     setSliderValue(newValue as number);
   };
 
+  const handleTextFieldChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setSliderValue(parseInt(event.target.value));
+  };
+
   return (
     <>
       <Grid container>
@@ -29,9 +35,15 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
         <Grid item xs={6} container direction="column" alignItems="flex-end">
           {
             <span className={labelStyle.root}>
-              {prop.unitPosition === 'right'
-                ? sliderValue + ' ' + prop.unit
-                : prop.unit + ' ' + sliderValue}
+              {prop.unitPosition !== 'right' ? prop.unit : ''}
+              <TextField
+                id="standard-basic"
+                label={prop.indicator}
+                type="number"
+                value={sliderValue}
+                onChange={handleTextFieldChange}
+              />
+              {prop.unitPosition === 'right' ? prop.unit : ''}
             </span>
           }
         </Grid>

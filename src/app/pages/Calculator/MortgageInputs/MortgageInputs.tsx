@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles, Paper, Tab, Tabs } from '@material-ui/core';
 import { TabPanel } from './TabPanel';
 import MortgageSlider from './MortgageSlider';
+import { SliderDto, sliders } from './mortgageInputs.const';
 
 const useStyle = makeStyles({
   root: {
@@ -18,52 +19,26 @@ const useStyle = makeStyles({
 export function MortgageInputs() {
   const styles = useStyle();
   const [value, setValue] = React.useState(0);
-  const [price] = React.useState(1000000);
-  const [years] = React.useState(10);
-  const [payment] = React.useState(500000);
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-  const sliders = [
-    {
-      indicator: 'Price',
-      unit: 'Rs.',
-      min: 500000,
-      max: 10000000,
-      step: 100000,
-      defaultValue: price,
-    },
-    {
-      indicator: 'Length of loan',
-      unit: 'years',
-      unitPosition: 'right',
-      step: 1,
-      min: 5,
-      max: 30,
-      defaultValue: years,
-    },
-    {
-      indicator: 'Down payment',
-      unit: 'Rs,',
-      min: 100000,
-      step: 100000,
-      max: 10000000,
-      defaultValue: payment,
-    },
-  ];
 
-  function mortgageSliderBlock(slideItem) {
-    return (
-      <MortgageSlider
-        indicator={slideItem.indicator}
-        unit={slideItem.unit}
-        min={slideItem.min}
-        max={slideItem.max}
-        step={slideItem.step}
-        defaultValue={slideItem.defaultValue}
-      ></MortgageSlider>
-    );
+  function mortgageSliderBlock(sliderData: SliderDto[]) {
+    let data = sliderData.map(slideItem => {
+      return (
+        <MortgageSlider
+          indicator={slideItem.indicator || ''}
+          unit={slideItem.unit || ''}
+          min={slideItem.min}
+          max={slideItem.max}
+          step={slideItem.step}
+          defaultValue={slideItem.defaultValue}
+          unitPosition={slideItem.unitPosition || 'left'}
+        ></MortgageSlider>
+      );
+    });
+    return data;
   }
 
   return (
@@ -77,21 +52,21 @@ export function MortgageInputs() {
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab className={styles.tabLabels} label="All" />
-            <Tab className={styles.tabLabels} label="New" />
-            <Tab className={styles.tabLabels} label="Resellers" />
+            <Tab className={styles.tabLabels} label="EMI Calculator" />
+            <Tab className={styles.tabLabels} label="Eligibility" />
+            <Tab className={styles.tabLabels} label="Affordability" />
           </Tabs>
         </Paper>
       </div>
-      {[0, 1, 2].map(item => {
-        return (
-          <TabPanel value={value} index={item}>
-            {sliders.map(slideItem => {
-              return mortgageSliderBlock(slideItem);
-            })}
-          </TabPanel>
-        );
-      })}
+      <TabPanel value={value} index={0}>
+        {mortgageSliderBlock(sliders.emi)}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        {mortgageSliderBlock(sliders.eligible)}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        {mortgageSliderBlock(sliders.afford)}
+      </TabPanel>
     </>
   );
 }

@@ -16,7 +16,7 @@ export function Calculator() {
   return (
     <>
       <Helmet>
-        <title>Calculate Mortgage</title>
+        <title>Home Loan Calculator</title>
         <meta
           name="description"
           content="Calculate how much mortgage you need to pay depending on your borrowed amount."
@@ -26,8 +26,8 @@ export function Calculator() {
         <ThemeProvider theme={mainTheme}>
           <div className={classes.content}>
             <Typography variant="h1">
-              <Typography variant="subtitle1">Calculate</Typography>
-              Mortgage
+              <Typography variant="subtitle1">Home Loan</Typography>
+              Calculator
             </Typography>
             <MortgageBanner></MortgageBanner>
             <MortgageInputs></MortgageInputs>
