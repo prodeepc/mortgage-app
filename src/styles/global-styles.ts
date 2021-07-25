@@ -2,6 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 import { StyleConstants } from './StyleConstants';
 /* istanbul ignore next */
 export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 10px;
+  }
+
   html,
   body {
     height: 100%;
@@ -13,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     padding-top: ${StyleConstants.MY_NAV_BAR_HEIGHT};
     background-color: ${p => p.theme.background};
+    font-size: 2.4rem;
   }
 
   body.fontLoaded {
