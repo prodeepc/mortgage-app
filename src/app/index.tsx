@@ -15,7 +15,7 @@ import { GlobalStyle } from '../styles/global-styles';
 import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
-import { Calculator } from './pages/Calculator';
+import Calculator from './pages/Calculator';
 
 export function App() {
   const { i18n } = useTranslation();
