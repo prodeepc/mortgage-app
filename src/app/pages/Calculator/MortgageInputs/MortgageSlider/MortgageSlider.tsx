@@ -6,10 +6,18 @@ import {
   PrettySliderLabels,
 } from './slider.style';
 import { MortgageSliderProps } from './slider.props';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCalculatorSlice } from '../../slice';
+import { selectEmiPrice } from '../../slice/selectors';
 
 export const MortgageSlider: FC<MortgageSliderProps> = prop => {
+  const { actions } = useCalculatorSlice();
+
   const labelStyle = PrettySliderLabels();
   const [sliderValue, setSliderValue] = React.useState(0);
+  const price = useSelector(selectEmiPrice);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setSliderValue(prop.defaultValue || 0);
@@ -19,6 +27,10 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
     _event: React.ChangeEvent<{}>,
     newValue: number | number[],
   ) => {
+    if (prop.sliderId === 1) {
+      dispatch(actions.changeEmiPrice(newValue as number));
+      console.log(price);
+    }
     setSliderValue(newValue as number);
   };
 

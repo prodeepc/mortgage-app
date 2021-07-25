@@ -1,4 +1,4 @@
-export type SliderDto = {
+export interface SliderDto {
   id: number;
   indicator?: string;
   unit?: string;
@@ -7,13 +7,13 @@ export type SliderDto = {
   min?: number;
   max?: number;
   defaultValue?: number;
-};
+}
 
-export type SlidersDto = {
+export interface SlidersDto {
   emi: SliderDto[];
   eligible: SliderDto[];
   afford: SliderDto[];
-};
+}
 
 export const sliders: SlidersDto = {
   emi: [
