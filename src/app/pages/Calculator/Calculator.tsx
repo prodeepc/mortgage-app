@@ -1,6 +1,9 @@
 import {
   Container,
   makeStyles,
+  Paper,
+  Tab,
+  Tabs,
   ThemeProvider,
   Typography,
 } from '@material-ui/core';
@@ -9,9 +12,47 @@ import { Helmet } from 'react-helmet-async';
 import { MortgageDetails } from './MortgageDetails';
 import MortgageBanner from './MortgageBanner';
 import mainTheme from './calculator.theme';
+import { TabPanel } from './MortgageInputs/TabPanel';
+import React from 'react';
+import { sliders } from './MortgageInputs/mortgageInputs.const';
 
 export function Calculator() {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  const tabsMapping = [
+    { index: 0, item: 'emi' },
+    { index: 1, item: 'eligible' },
+    { index: 2, item: 'afford' },
+  ];
+
+  const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  function renderTabPanelBlock(tab) {
+    return (
+      <TabPanel value={value} index={tab.index}>
+        <MortgageInputs item={sliders[tab.item]}></MortgageInputs>
+        <MortgageDetails></MortgageDetails>
+      </TabPanel>
+    );
+  }
+
+  function renderTabsBlock() {
+    return (
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="fullWidth"
+      >
+        <Tab className={classes.tabLabels} label="EMI Calculator" />
+        <Tab className={classes.tabLabels} label="Eligibility" />
+        <Tab className={classes.tabLabels} label="Affordability" />
+      </Tabs>
+    );
+  }
 
   return (
     <>
@@ -28,8 +69,14 @@ export function Calculator() {
             <Typography variant="subtitle1">Home Loan</Typography>
             <Typography variant="h1">Calculator</Typography>
             <MortgageBanner></MortgageBanner>
-            <MortgageInputs></MortgageInputs>
-            <MortgageDetails></MortgageDetails>
+            <div className={classes.root}>
+              <Paper className={classes.paper} elevation={3}>
+                {renderTabsBlock()}
+              </Paper>
+            </div>
+            {tabsMapping.map(tab => {
+              return renderTabPanelBlock(tab);
+            })}
           </div>
         </ThemeProvider>
       </Container>
@@ -38,6 +85,15 @@ export function Calculator() {
 }
 
 const useStyles = makeStyles({
+  root: {
+    width: 500,
+  },
+  tabLabels: {
+    fontSize: '1.2rem',
+  },
+  paper: {
+    marginTop: '2rem',
+  },
   content: {
     marginTop: '2.5rem',
     padding: '2.5rem',

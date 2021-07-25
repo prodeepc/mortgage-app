@@ -23,4 +23,8 @@ mainTheme.typography.caption = {
   display: 'inline-block',
 };
 
+mainTheme.typography.button = {
+  fontSize: '1.2rem',
+};
+
 export default mainTheme;
