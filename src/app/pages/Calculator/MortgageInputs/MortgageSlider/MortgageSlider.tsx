@@ -1,6 +1,10 @@
 import React, { FC, useEffect } from 'react';
-import { Grid, TextField } from '@material-ui/core';
-import { PrettySlider, PrettySliderLabels } from './slider.style';
+import { Grid, InputAdornment, InputBase } from '@material-ui/core';
+import {
+  InputPropsStyle,
+  PrettySlider,
+  PrettySliderLabels,
+} from './slider.style';
 import { MortgageSliderProps } from './slider.props';
 
 export const MortgageSlider: FC<MortgageSliderProps> = prop => {
@@ -21,7 +25,14 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
   const handleTextFieldChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setSliderValue(parseInt(event.target.value));
+    let value = parseInt(event.target.value);
+    if (
+      !isNaN(value) &&
+      value >= (prop.min || 1) &&
+      value <= (prop.max || 1000)
+    ) {
+      setSliderValue(parseInt(event.target.value));
+    }
   };
 
   return (
@@ -35,15 +46,31 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
         <Grid item xs={6} container direction="column" alignItems="flex-end">
           {
             <span className={labelStyle.root}>
-              {prop.unitPosition !== 'right' ? prop.unit : ''}
-              <TextField
-                id="standard-basic"
-                label={prop.indicator}
-                type="number"
+              <InputBase
+                key={`slider-label-${prop.sliderId}`}
+                id={`slider-label-${prop.sliderId}`}
+                inputProps={{
+                  style: {
+                    ...InputPropsStyle.style,
+                  },
+                }}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <div style={{ color: '#000', fontSize: '1.2rem' }}>
+                      {prop.unitPosition !== 'right' ? prop.unit : ''}
+                    </div>
+                  </InputAdornment>
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <div style={{ color: '#000', fontSize: '1.2rem' }}>
+                      {prop.unitPosition === 'right' ? prop.unit : ''}
+                    </div>
+                  </InputAdornment>
+                }
                 value={sliderValue}
                 onChange={handleTextFieldChange}
               />
-              {prop.unitPosition === 'right' ? prop.unit : ''}
             </span>
           }
         </Grid>

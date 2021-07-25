@@ -1,4 +1,5 @@
 export type SliderDto = {
+  id: number;
   indicator?: string;
   unit?: string;
   unitPosition?: string;
@@ -17,6 +18,7 @@ export type SlidersDto = {
 export const sliders: SlidersDto = {
   emi: [
     {
+      id: 1,
       indicator: 'Price',
       unit: 'Rs. ',
       min: 500000,
@@ -25,6 +27,7 @@ export const sliders: SlidersDto = {
       defaultValue: 1000000,
     },
     {
+      id: 2,
       indicator: 'Length of loan',
       unit: ' years',
       unitPosition: 'right',
@@ -34,6 +37,7 @@ export const sliders: SlidersDto = {
       defaultValue: 10,
     },
     {
+      id: 3,
       indicator: 'Interest Rate (%P.A.)',
       unit: '%',
       unitPosition: 'right',
@@ -45,6 +49,7 @@ export const sliders: SlidersDto = {
   ],
   eligible: [
     {
+      id: 4,
       indicator: 'Gross Income (Monthly)',
       unit: 'Rs. ',
       min: 10000,
@@ -53,6 +58,7 @@ export const sliders: SlidersDto = {
       defaultValue: 25000,
     },
     {
+      id: 5,
       indicator: 'Tenure (Years)',
       unit: 'years',
       unitPosition: 'right',
@@ -62,6 +68,7 @@ export const sliders: SlidersDto = {
       defaultValue: 10,
     },
     {
+      id: 6,
       indicator: 'Interest Rate (%P.A.)',
       unit: '%',
       unitPosition: 'right',
@@ -71,6 +78,7 @@ export const sliders: SlidersDto = {
       defaultValue: 6.75,
     },
     {
+      id: 7,
       indicator: 'Other EMI (Monthly)',
       unit: 'Rs,',
       min: 0,
@@ -81,6 +89,7 @@ export const sliders: SlidersDto = {
   ],
   afford: [
     {
+      id: 8,
       indicator: 'Down Payment',
       unit: 'Rs.',
       min: 0,
@@ -89,6 +98,7 @@ export const sliders: SlidersDto = {
       defaultValue: 100000,
     },
     {
+      id: 9,
       indicator: 'Gross Income (Monthly)',
       unit: 'Rs. ',
       min: 10000,
@@ -97,6 +107,7 @@ export const sliders: SlidersDto = {
       defaultValue: 25000,
     },
     {
+      id: 10,
       indicator: 'Length of loan',
       unit: 'years',
       unitPosition: 'right',
@@ -106,6 +117,7 @@ export const sliders: SlidersDto = {
       defaultValue: 10,
     },
     {
+      id: 11,
       indicator: 'Interest Rate (%P.A.)',
       unit: '%',
       unitPosition: 'right',
@@ -115,6 +127,7 @@ export const sliders: SlidersDto = {
       defaultValue: 6.75,
     },
     {
+      id: 12,
       indicator: 'Other EMI (Monthly)',
       unit: 'Rs,',
       min: 0,

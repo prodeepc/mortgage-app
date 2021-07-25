@@ -36,3 +36,11 @@ export const PrettySliderLabels = makeStyles({
     fontSize: '1.4rem',
   },
 });
+
+export const InputPropsStyle = {
+  style: {
+    width: '7rem',
+    fontSize: '1.4rem',
+    textAlign: 'right' as 'right',
+  },
+};

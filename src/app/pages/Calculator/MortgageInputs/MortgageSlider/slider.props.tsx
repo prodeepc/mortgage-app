@@ -1,6 +1,7 @@
 export type MortgageSliderProps = {
   indicator: string;
   unit: string;
+  sliderId: number;
   min?: number;
   max?: number;
   step?: number;

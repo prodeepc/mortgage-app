@@ -1,3 +1,3 @@
-import { MortgageBanner } from "./MortgageBanner";
+import { MortgageBanner } from './MortgageBanner';
 
 export default MortgageBanner;

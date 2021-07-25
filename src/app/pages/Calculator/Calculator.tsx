@@ -25,10 +25,8 @@ export function Calculator() {
       <Container maxWidth="sm">
         <ThemeProvider theme={mainTheme}>
           <div className={classes.content}>
-            <Typography variant="h1">
-              <Typography variant="subtitle1">Home Loan</Typography>
-              Calculator
-            </Typography>
+            <Typography variant="subtitle1">Home Loan</Typography>
+            <Typography variant="h1">Calculator</Typography>
             <MortgageBanner></MortgageBanner>
             <MortgageInputs></MortgageInputs>
             <MortgageDetails></MortgageDetails>

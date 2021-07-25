@@ -25,9 +25,11 @@ export function MortgageInputs() {
   };
 
   function mortgageSliderBlock(sliderData: SliderDto[]) {
-    let data = sliderData.map(slideItem => {
+    let data = sliderData.map((slideItem, index) => {
       return (
         <MortgageSlider
+          key={`mortgage-slider-${slideItem.id}`}
+          sliderId={slideItem.id}
           indicator={slideItem.indicator || ''}
           unit={slideItem.unit || ''}
           min={slideItem.min}

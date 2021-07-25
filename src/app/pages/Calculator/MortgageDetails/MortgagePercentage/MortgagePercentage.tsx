@@ -16,13 +16,11 @@ export function MortgagePercentage() {
   return (
     <>
       <div>
-        <span className={style.percentage}>7.8%</span>
-        <div className="help"></div>
-      </div>
-      <div>
         <Typography variant="caption" className={style.disclaimer}>
-          This rate is based on the average value of credit offers from popular
-          Indian banks.
+          These calculators are provided only as general self-help Planning
+          Tools. Results depend on many factors, including the assumptions you
+          provide. We do not guarantee their accuracy, or applicability to your
+          circumstances.
         </Typography>
       </div>
     </>
