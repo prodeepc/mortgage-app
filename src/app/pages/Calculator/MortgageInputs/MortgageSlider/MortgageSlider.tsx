@@ -6,32 +6,29 @@ import {
   PrettySliderLabels,
 } from './slider.style';
 import { MortgageSliderProps } from './slider.props';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCalculatorSlice } from '../../slice';
-import { selectEmiPrice } from '../../slice/selectors';
+import { useDispatch } from 'react-redux';
+import { useCalculationSlice } from '../../slice';
 
 export const MortgageSlider: FC<MortgageSliderProps> = prop => {
-  const { actions } = useCalculatorSlice();
+  const { actions } = useCalculationSlice();
 
   const labelStyle = PrettySliderLabels();
-  const [sliderValue, setSliderValue] = React.useState(0);
-  const price = useSelector(selectEmiPrice);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setSliderValue(prop.defaultValue || 0);
+    if (prop.store) {
+      dispatch(actions[prop.store](prop.defaultValue || 0));
+    }
   }, [prop.defaultValue]);
 
   const handleSliderChange = (
     _event: React.ChangeEvent<{}>,
     newValue: number | number[],
   ) => {
-    if (prop.sliderId === 1) {
-      dispatch(actions.changeEmiPrice(newValue as number));
-      console.log(price);
+    if (prop.store) {
+      dispatch(actions[prop.store](newValue as number));
     }
-    setSliderValue(newValue as number);
   };
 
   const handleTextFieldChange = (
@@ -43,7 +40,9 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
       value >= (prop.min || 1) &&
       value <= (prop.max || 1000)
     ) {
-      setSliderValue(parseInt(event.target.value));
+      if (prop.store) {
+        dispatch(actions[prop.store](parseInt(event.target.value)));
+      }
     }
   };
 
@@ -80,7 +79,7 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
                     </div>
                   </InputAdornment>
                 }
-                value={sliderValue}
+                value={prop.slice}
                 onChange={handleTextFieldChange}
               />
             </span>
@@ -90,7 +89,7 @@ export const MortgageSlider: FC<MortgageSliderProps> = prop => {
 
       <div>
         <PrettySlider
-          value={sliderValue}
+          value={prop.slice}
           onChange={handleSliderChange}
           min={prop.min}
           max={prop.max}

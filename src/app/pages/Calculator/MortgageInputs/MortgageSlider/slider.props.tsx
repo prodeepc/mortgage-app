@@ -7,4 +7,6 @@ export type MortgageSliderProps = {
   step?: number;
   defaultValue?: number;
   unitPosition?: string;
+  store?: string;
+  slice?: number;
 };

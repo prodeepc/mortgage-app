@@ -1,9 +1,11 @@
 import MortgageSlider from './MortgageSlider';
 import { SliderDto } from './mortgageInputs.const';
 import { FC } from 'react';
+import { sliderState } from '../slice/types';
 
 type MortgageInputProps = {
   item: SliderDto[];
+  slices: sliderState;
 };
 
 export const MortgageInputs: FC<MortgageInputProps> = props => {
@@ -19,6 +21,8 @@ export const MortgageInputs: FC<MortgageInputProps> = props => {
           max={slideItem.max}
           step={slideItem.step}
           defaultValue={slideItem.defaultValue}
+          store={slideItem.store || ''}
+          slice={slideItem.slice ? props.slices[slideItem.slice] : 0}
           unitPosition={slideItem.unitPosition || 'left'}
         ></MortgageSlider>
       );

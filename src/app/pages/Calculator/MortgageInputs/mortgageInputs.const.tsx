@@ -7,6 +7,8 @@ export interface SliderDto {
   min?: number;
   max?: number;
   defaultValue?: number;
+  store?: string;
+  slice?: string;
 }
 
 export interface SlidersDto {
@@ -25,6 +27,8 @@ export const sliders: SlidersDto = {
       max: 10000000,
       step: 1000,
       defaultValue: 1000000,
+      store: 'changeEmiPrice',
+      slice: 'price',
     },
     {
       id: 2,
@@ -35,6 +39,8 @@ export const sliders: SlidersDto = {
       min: 5,
       max: 30,
       defaultValue: 10,
+      store: 'changeEmiLength',
+      slice: 'length',
     },
     {
       id: 3,
@@ -45,6 +51,8 @@ export const sliders: SlidersDto = {
       step: 0.01,
       max: 15,
       defaultValue: 6.75,
+      store: 'changeEmiRate',
+      slice: 'rate',
     },
   ],
   eligible: [
@@ -56,6 +64,8 @@ export const sliders: SlidersDto = {
       max: 1000000,
       step: 1,
       defaultValue: 25000,
+      store: 'changeEligibleIncome',
+      slice: 'income',
     },
     {
       id: 5,
@@ -66,6 +76,8 @@ export const sliders: SlidersDto = {
       min: 5,
       max: 30,
       defaultValue: 10,
+      store: 'changeEligibleLength',
+      slice: 'length',
     },
     {
       id: 6,
@@ -76,6 +88,8 @@ export const sliders: SlidersDto = {
       step: 0.01,
       max: 15,
       defaultValue: 6.75,
+      store: 'changeEligibleRate',
+      slice: 'rate',
     },
     {
       id: 7,
@@ -85,6 +99,8 @@ export const sliders: SlidersDto = {
       step: 1,
       max: 500000,
       defaultValue: 0,
+      store: 'changeEligibleEmi',
+      slice: 'emi',
     },
   ],
   afford: [
@@ -96,6 +112,8 @@ export const sliders: SlidersDto = {
       max: 10000000,
       step: 1,
       defaultValue: 100000,
+      store: 'changeAffordPayment',
+      slice: 'payment',
     },
     {
       id: 9,
@@ -105,6 +123,8 @@ export const sliders: SlidersDto = {
       max: 1000000,
       step: 1,
       defaultValue: 25000,
+      store: 'changeAffordIncome',
+      slice: 'income',
     },
     {
       id: 10,
@@ -115,6 +135,8 @@ export const sliders: SlidersDto = {
       min: 5,
       max: 30,
       defaultValue: 10,
+      store: 'changeAffordLength',
+      slice: 'length',
     },
     {
       id: 11,
@@ -125,6 +147,8 @@ export const sliders: SlidersDto = {
       step: 0.01,
       max: 15,
       defaultValue: 6.75,
+      store: 'changeAffordRate',
+      slice: 'rate',
     },
     {
       id: 12,
@@ -134,6 +158,8 @@ export const sliders: SlidersDto = {
       step: 1,
       max: 500000,
       defaultValue: 0,
+      store: 'changeAffordEmi',
+      slice: 'emi',
     },
   ],
 };
