@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import MortgageInputs from './MortgageInputs';
 import { Helmet } from 'react-helmet-async';
-import { MortgageDetails } from './MortgageDetails';
+import MortgageDetails from './MortgageDetails';
 import MortgageBanner from './MortgageBanner';
 import mainTheme from './calculator.theme';
 import { TabPanel } from './MortgageInputs/TabPanel';
@@ -73,7 +73,7 @@ export function Calculator() {
           item={sliders[tab.item]}
           slices={sliderStates[tab.item]}
         ></MortgageInputs>
-        <MortgageDetails></MortgageDetails>
+        <MortgageDetails slices={sliderStates[tab.item]}></MortgageDetails>
       </TabPanel>
     );
   }

@@ -1,30 +1,35 @@
-import { Button, makeStyles, Typography } from '@material-ui/core';
-import { useEffect, useState } from 'react';
-import { StyleConstants } from 'styles/StyleConstants';
+import { Button, Typography } from '@material-ui/core';
+import { FC, useEffect, useState } from 'react';
+import { sliderState } from '../../slice/types';
+import { amountStyle } from './amount.style';
 
-const useStyle = makeStyles({
-  button: {
-    fontSize: '1.4rem',
-    backgroundColor: `${StyleConstants.PRIMARY_COLOR}`,
-  },
-  amount: {
-    fontSize: '3rem',
-    color: 'black',
-  },
-  amountUnit: {
-    fontSize: '1.4rem',
-    color: '#555',
-  },
-  amountContainer: {
-    textAlign: 'right',
-  },
-});
+const useStyle = amountStyle;
 
-export function MortgageAmount() {
+export const MortgageAmount: FC<{ slices: sliderState }> = props => {
   const style = useStyle();
+  let price = props.slices.price;
+  let rate = props.slices.rate;
+  let length = props.slices.length;
 
-  const [amount] = useState(10663);
+  const [amount, setAmount] = useState(10663);
   const [formattedAmt, setFormattedAmt] = useState(0);
+
+  function calculateEmi() {
+    const amount = price || 500000;
+    const term = (length || 5) * 12;
+    const interest = rate || 0;
+    const monthlyIR = interest / 100 / 12;
+    const top = Math.pow(1 + monthlyIR, term);
+    const bottom = top - 1;
+    const sp = top / bottom;
+    let emi = Math.round(amount * monthlyIR * sp);
+    emi = isNaN(emi) ? 0 : emi;
+    setAmount(emi);
+  }
+
+  useEffect(() => {
+    calculateEmi();
+  }, [price, length, rate]);
 
   useEffect(() => {
     setFormattedAmt(formatAmount(amount));
@@ -46,4 +51,4 @@ export function MortgageAmount() {
       </div>
     </>
   );
-}
+};
